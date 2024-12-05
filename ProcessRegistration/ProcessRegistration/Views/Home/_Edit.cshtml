@@ -1,0 +1,21 @@
+﻿@model ProcessRegistration.Models.ProcessModel
+
+<form method="post" asp-action="Edit">
+    <div class="form-group mb-3">
+        <label for="NPU" class="form-label">NPU</label>
+        <input type="text" class="form-control" id="NPU" name="NPU" value="@Model.NPU" readonly />
+    </div>
+    <div class="form-group mb-3">
+        <label for="UF" class="form-label">UF</label>
+        <select class="form-select" id="UF" name="UF" required>
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <label for="Municipio" class="form-label">Município</label>
+        <input type="text" class="form-control" id="Municipio" name="Municipio" value="@Model.Municipio" required />
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success">Salvar Alterações</button>
+    </div>
+</form>
