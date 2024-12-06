@@ -101,18 +101,50 @@ namespace ProcessRegistration.Controllers
             return PartialView("_Edit", model);
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> Edit(ProcessModel model)
+        public async Task<IActionResult> Edit([FromBody] ProcessModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Entry(model).State = EntityState.Modified;
+                var existingProcess = await _context.Processes.FindAsync(model.Id);
+                if (existingProcess == null)
+                {
+                    return NotFound(new { message = "Processo não encontrado." });
+                }
+
+                existingProcess.Name = model.Name;
+                existingProcess.NPU = model.NPU;
+                existingProcess.State = model.State;
+
+                var httpClient = new HttpClient();
+                var response = await httpClient.GetAsync($"https://servicodados.ibge.gov.br/api/v1/localidades/municipios/{model.City}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    var cityData = JsonSerializer.Deserialize<JsonElement>(responseContent);
+
+                    existingProcess.City = cityData.GetProperty("nome").GetString();
+                    existingProcess.CityCode = cityData.GetProperty("id").GetInt32();
+                }
+                else
+                {
+                    return BadRequest(new { message = "Erro ao obter informações do município." });
+                }
+
+                existingProcess.ViewDate = DateTime.Now;
+
+                _context.Entry(existingProcess).State = EntityState.Modified;
+
                 await _context.SaveChangesAsync();
-                return Json(new { success = true });
+
+                return Ok(new { message = "Processo atualizado com sucesso!" });
             }
 
-            return PartialView("_Edit", model);
+            return BadRequest(ModelState);
         }
+
 
         [HttpGet]
         public IActionResult Delete(int id)

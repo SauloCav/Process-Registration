@@ -89,6 +89,50 @@ function attachEventListeners() {
         });
     });
 
+    $(document).off('click', '#btnSaveEdit').on('click', '#btnSaveEdit', function () {
+        $('#loadingOverlay').show();
+        $('#btnSaveEdit').prop('disabled', true);
+
+        var id = $('#Id').val();
+        var name = $('#Name').val();
+        var npu = $('#NPU').val();
+        var state = $('#State').val();
+        var city = $('#City').val();
+
+        var formData = {
+            Id: id,
+            Name: name,
+            NPU: npu,
+            State: state,
+            City: city
+        };
+
+        $.ajax({
+            url: '/Process/Edit',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            success: function (response) {
+                $('#loadingOverlay').hide();
+                alert('Processo atualizado com sucesso!');
+                $('#actionModal').modal('hide');
+                location.reload();
+            },
+            error: function (xhr) {
+                $('#loadingOverlay').hide();
+                alert('Ocorreu um erro ao atualizar o processo: ' + xhr.responseText);
+            },
+            complete: function () {
+                $('#btnSaveEdit').prop('disabled', false);
+            }
+        });
+    });
+
+
     $(document).off('click', '#confirmDeleteButton').on('click', '#confirmDeleteButton', function () {
         const processId = $('#processId').val();
         $('#loadingOverlay').show();
