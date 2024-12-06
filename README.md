@@ -1,5 +1,7 @@
 # CRUD de cadastro de Processos
 
+<p align="center"><img src="img/process.png" /></p>
+
 ## Objetivo
 
 O objetivo deste projeto é criar uma aplicação web em C# que permita realizar operações CRUD (Create, Read, Update, Delete) para o cadastro de processos. As funcionalidades implementadas incluem o cadastro, listagem, edição e exclusão de processos, utilizando as seguintes tecnologias e padrões:
