@@ -1,0 +1,33 @@
+﻿@model ProcessRegistration.Models.ProcessModel
+
+<div class="modal-body">
+    <table class="table-details">
+        <tr>
+            <th><strong>Nome do Processo:</strong></th>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <th><strong>NPU:</strong></th>
+            <td>@Model.NPU</td>
+        </tr>
+        <tr>
+            <th><strong>Data de Cadastro:</strong></th>
+            <td>@Model.RegistrationDate.ToShortDateString()</td>
+        </tr>
+        @if (Model.ViewDate.HasValue)
+        {
+            <tr>
+                <th><strong>Data de Visualização:</strong></th>
+                <td>@Model.ViewDate.Value.ToShortDateString()</td>
+            </tr>
+        }
+        <tr>
+            <th><strong>UF:</strong></th>
+            <td>@Model.State</td>
+        </tr>
+        <tr>
+            <th><strong>Município:</strong></th>
+            <td>@Model.City</td>
+        </tr>
+    </table>
+</div>

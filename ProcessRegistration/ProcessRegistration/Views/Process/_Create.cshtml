@@ -1,0 +1,56 @@
+﻿@model ProcessRegistration.Models.ProcessModel
+
+<form id="formProcess" method="post" asp-action="Create">
+    <div class="form-group mb-3">
+        <label for="Name" class="form-label">Nome do Processo</label>
+        <input type="text" class="form-control" id="Name" name="Name" required />
+    </div>
+    <div class="form-group mb-3">
+        <label for="NPU" class="form-label">NPU</label>
+        <input type="text" class="form-control" id="NPU" name="NPU" placeholder="1111111-11.1111.1.11.1111" required />
+    </div>
+    <div class="form-group mb-3">
+        <label for="State" class="form-label">UF</label>
+        <select class="form-select" id="State" name="State" required>
+            <option value="">Selecione a UF</option>
+            <option value="AC">AC</option>
+            <option value="AL">AL</option>
+
+            <option value="AP">AP</option>
+            <option value="AM">AM</option>
+            <option value="BA">BA</option>
+            <option value="CE">CE</option>
+            <option value="DF">DF</option>
+            <option value="ES">ES</option>
+            <option value="GO">GO</option>
+            <option value="MA">MA</option>
+            <option value="MT">MT</option>
+            <option value="MS">MS</option>
+            <option value="MG">MG</option>
+            <option value="PA">PA</option>
+            <option value="PB">PB</option>
+            <option value="PR">PR</option>
+            <option value="PE">PE</option>
+            <option value="PI">PI</option>
+            <option value="RJ">RJ</option>
+            <option value="RN">RN</option>
+            <option value="RS">RS</option>
+            <option value="RO">RO</option>
+            <option value="RR">RR</option>
+            <option value="SC">SC</option>
+            <option value="SP">SP</option>
+            <option value="SE">SE</option>
+            <option value="TO">TO</option>
+        </select>
+    </div>
+    <div class="form-group mb-3">
+        <label for="City" class="form-label">Município</label>
+        <select class="form-select" id="City" name="City" required>
+            <option value="">Selecione o Município</option>
+        </select>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btnSave">Salvar</button>
+    </div>
+</form>

@@ -3,8 +3,9 @@
 <p>Você tem certeza de que deseja excluir o processo com o NPU <strong>@Model.NPU</strong>?</p>
 
 <div class="d-flex justify-content-center">
-    <form method="post" asp-action="Delete">
+    <form id="deleteForm" method="post">
+        <input type="hidden" id="processId" value="@Model.Id" />
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-danger">Excluir</button>
+        <button type="button" id="confirmDeleteButton" class="btn btn-danger">Excluir</button>
     </form>
 </div>
