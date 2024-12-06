@@ -41,7 +41,7 @@ A tabela de processos contém os seguintes campos:
 ### Clonar o Repositório:
 
 ```bash
-git clone <url-do-repositorio>
+git clone <url>
 cd ProcessRegistration
 ```
 
