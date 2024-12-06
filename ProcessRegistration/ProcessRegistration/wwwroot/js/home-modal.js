@@ -159,6 +159,27 @@ function attachEventListeners() {
         });
     });
 
+    $(document).off('click', '#confirmViewButton').on('click', '#confirmViewButton', function () {
+        const processId = $(this).data('process-id');
+        $.ajax({
+            url: `/Process/ConfirmView/${processId}`,
+            type: 'POST',
+            success: function (response) {
+                if (response.success) {
+                    alert('Data de visualização atualizada com sucesso!');
+                    $('#actionModal').modal('hide');
+                    location.reload();
+                } else {
+                    alert('Erro ao atualizar a data de visualização: ' + response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Erro: " + error);
+                alert('Ocorreu um erro ao atualizar a data de visualização: ' + xhr.responseText);
+            }
+        });
+    });
+
 
     $(document).on('input change', '#formProcess input, #formProcess select', function () {
         validateForm();

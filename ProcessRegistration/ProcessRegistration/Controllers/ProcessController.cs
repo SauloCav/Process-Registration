@@ -171,5 +171,23 @@ namespace ProcessRegistration.Controllers
             await _context.SaveChangesAsync();
             return Json(new { success = true });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmView(int id)
+        {
+            var model = await _context.Processes.FindAsync(id);
+            if (model == null)
+            {
+                return NotFound(new { message = "Processo não encontrado." });
+            }
+
+            model.ViewDate = DateTime.Now;
+            _context.Entry(model).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
+            return Json(new { success = true });
+        }
+
     }
 }

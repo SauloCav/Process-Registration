@@ -9,7 +9,7 @@
         <tr>
             <th><strong>NPU:</strong></th>
             <td>@Model.NPU</td>
-        </tr>
+        </tr>   
         <tr>
             <th><strong>Data de Cadastro:</strong></th>
             <td>@Model.RegistrationDate.ToShortDateString()</td>
@@ -18,7 +18,7 @@
         {
             <tr>
                 <th><strong>Data de Visualização:</strong></th>
-                <td>@Model.ViewDate.Value.ToShortDateString()</td>
+                <td>@Model.ViewDate.Value.ToString("dd/MM/yyyy HH:mm:ss")</td>
             </tr>
         }
         <tr>
@@ -30,4 +30,9 @@
             <td>@Model.City</td>
         </tr>
     </table>
+</div>
+
+<div class="modal-footer d-flex justify-content-center">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+    <button type="button" class="btn btn-primary" id="confirmViewButton" data-process-id="@Model.Id">Confirmar Visualização</button>
 </div>
